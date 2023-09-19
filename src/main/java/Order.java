@@ -9,9 +9,10 @@ status zamówienia (złożone, przyjęte, wysłane do doręczenia, niedostarczon
  */
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Order {
-    Private User user;
+    private User user;
     private List<Product> productOrder = new ArrayList<>();
 
     public Order(ShoppingCart shoppingCart, User user) {
@@ -27,6 +28,5 @@ public class Order {
                     product.getCategory() + " " + product.getDescription() + " " + product.getSpecification());
         }
     }
-
     }
 

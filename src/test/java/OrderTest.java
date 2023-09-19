@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class OrderTest {
-    Private User user;
+    private User user;
     private List<Product> productOrder = new ArrayList<>();
 
     public OrderTest(ShoppingCart shoppingCart, User user) {
