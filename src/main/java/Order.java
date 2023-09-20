@@ -17,15 +17,15 @@ public class Order extends ShoppingCart {
     private List<Product> productOrder = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
-    public boolean userIsLoggedOrNot(){
-
-        }
+//    public boolean userIsLoggedOrNot(){
+//
+//        }
 
     public Order(ShoppingCart shoppingCart, User user) {
         if(!user.isLogged()){
             throw new IllegalStateException("The User is not logged in");
         }
-        this.productOrder.addAll(shoppingCart.getProducts());
+        //this.productOrder.addAll(shoppingCart.getProducts());
         this.user = user;
     }
     public void showOrder(){

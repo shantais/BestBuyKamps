@@ -8,8 +8,11 @@ class UserTest {
 
     @Test
     void isCurrentUserLogged(){
-        assertEquals(false, User.isLogged());
+        User user = new User();
+        assertEquals(false, user.isLogged());
     }
+
+
     @Test
     void areAllRegistrationSpacesFilled(){
         String name = "Jan";
