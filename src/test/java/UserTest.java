@@ -12,20 +12,25 @@ class UserTest {
         assertEquals(false, user.isLogged());
     }
 
+    @Test
+    void xxx(){
+
+    }
 
     @Test
-    void areAllRegistrationSpacesFilled(){
-        String name = "Jan";
-        String surname = "Kowalski";
+    void isLoginUnique(){
+        String login = "KowalskiRządzi666";
+//        assertEquals(false, loggedInUser.getLogin(login));
+    }
+
+    @Test
+    void areAllRequiredRegistrationSpacesFilled(){
+        User user = new User();
+
+        String login = "KowalskiRządzi666";
         String password = "AwesomePassword123";
         String email = "jan.kowalski@somesite.com";
-        String street = "Awesome Street";
-        String houseNumber = "111";
-        String flatNumber = "1";
-        String postalCode = "11-111";
-        String city = "Great City";
-        String phoneNumber = "123456789";
 
-        assertEquals(true, User.registrationForm());
+        assertEquals(true, user.registrationForm());
     }
 }
