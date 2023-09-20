@@ -10,10 +10,16 @@ status zamówienia (złożone, przyjęte, wysłane do doręczenia, niedostarczon
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-public class Order {
+public class Order extends ShoppingCart {
     private User user;
     private List<Product> productOrder = new ArrayList<>();
+    Scanner scanner = new Scanner(System.in);
+
+    public boolean userIsLoggedOrNot(){
+
+        }
 
     public Order(ShoppingCart shoppingCart, User user) {
         if(!user.isLogged()){
