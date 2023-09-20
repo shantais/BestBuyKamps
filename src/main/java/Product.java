@@ -17,6 +17,7 @@ public class Product {
         this.description = description;
         this.specification = specification;
         this.Id = lastId++;
+
     }
 
 
