@@ -1,4 +1,4 @@
-dodaje dane z koszyka ✔️
+/*      dodaje dane z koszyka ✔️
         sprawdza czy zalogowany ✔️
         jeśli niezalogowany to prosi o dane ✔️
         jeśli zalogowany to pobiera dane z konta i prosi o uzupełnienie brakujących/potwierdzenie istniejących
@@ -20,11 +20,11 @@ public class Order extends ShoppingCart {
     private List<Product> productOrder = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
-<<<<<<<HEAD
+
 
     public Order(ShoppingCart shoppingCart, User user) {
         this.productOrder.addAll(shoppingCart.getProducts());
-=======
+
 //    public boolean userIsLoggedOrNot(){
 //
 //        }
@@ -34,7 +34,7 @@ public class Order extends ShoppingCart {
                 throw new IllegalStateException("The User is not logged in");
             }
             //this.productOrder.addAll(shoppingCart.getProducts());
->>>>>>>origin / develop
+
             this.user = user;
         }
         public boolean userIsLoggedOrNot () {
