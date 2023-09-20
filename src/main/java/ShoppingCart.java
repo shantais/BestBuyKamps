@@ -24,7 +24,7 @@ removeFromCart : usunięcie produktu z koszyka ( zwraca Product - produkt usuni�
 
 addDiscount : dodanie zniżki (void)
 
-deleteCart : usunięcie koszyka(void)
+
 
 
  */
@@ -40,6 +40,13 @@ public class ShoppingCart {
     private double totalPriceAfterDiscount = 0;
     private double totalPrice = 0;
 
+    public ShoppingCart(String currentUser,Product product) {
+        this.cartID = generateCartID();
+        this.cartStatus = "NEW";
+        this.currentUser = currentUser;
+        shoppingList.add(product);
+
+    }
 
     public void setCurrentUser(String currentUser) {
         this.currentUser = currentUser;
@@ -70,10 +77,15 @@ public class ShoppingCart {
         totalPrice-=product.getPrice();
     }
 
+
+
     private long generateCartID() {
         // Generowanie losowej 10-cyfrowej liczby
         return 1000000000L + (long) (Math.random() * (9999999999L - 1000000000L + 1));
     }
 
+    public void setCartStatus(String newCartStatus) {
+        this.cartStatus = cartStatus;
+    }
 }
 
