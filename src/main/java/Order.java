@@ -7,8 +7,6 @@
         status zamówienia (złożone, przyjęte, wysłane do doręczenia, niedostarczone, dostarczone)
         */
 
-import user.User;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +27,7 @@ public class Order extends ShoppingCart {
 
     public Order(ShoppingCart shoppingCart, User user) {
             if (!user.isLogged()) {
-                throw new IllegalStateException("The user.User is not logged in");
+                throw new IllegalStateException("The User is not logged in");
             }
             this.productOrder.addAll(shoppingCart.getProducts());
 
