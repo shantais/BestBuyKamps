@@ -12,7 +12,7 @@ class UserTest {
 
     @Test
     void isCurrentUserLogged(){
-        assertEquals(false, user.isLogged());
+        assertFalse(user.isLogged());
     }
 
 
@@ -28,7 +28,6 @@ class UserTest {
     @Test
     void didGenerateProperRegistrationForm(){
         //given//when
-        Path path = Paths.get("src", "main", "java", "dataFiles", "UserData.txt");
         String userData = "username=KowalskiRządzi666|password=AwesomePassword123|name=Jan|surname=Kowalski|email=jan.kowalski@somesite.com|" +
                 "street=Awesome Street|houseNumber=111\\1|postalCode=11-111|city=Great City|phoneNumber=123456789";
         //then
@@ -41,7 +40,7 @@ class UserTest {
         Path path = Paths.get("src", "main", "java", "dataFiles", "UserData.txt");
         String username = "KowalskiRządzi666";
         //then
-        assertEquals(true, user.isInFile(path, username));
+        assertTrue(user.isInFile(path, username));
     }
 
     @Test
@@ -49,7 +48,7 @@ class UserTest {
         Path path = Paths.get("src", "main", "java", "dataFiles", "UserData.txt");
         String userData = "username=KowalskiRządzi666|password=AwesomePassword123|name=Jan|surname=Kowalski|email=jan.kowalski@somesite.com|" +
                 "street=Awesome Street|houseNumber=111\\1|postalCode=11-111|city=Great City|phoneNumber=123456789";
-        assertEquals(true, user.readFromFile(path).contains(userData));
+        assertTrue(user.readFromFile(path).contains(userData));
     }
 
     @Test
