@@ -39,14 +39,15 @@ public class User {
 
         List<String> fullUserData = readFromFile(path);
 
-        if (!isInFile(fullUserData, username, email)){
+        if (!isInFile(path, username)){
             writeToFile(path, fullUserData, formReadyToSave);
         }
         return formReadyToSave;
     }
 
-    private boolean isInFile(List<String> fullUserData, String username, String email){
-        return fullUserData.contains(username) || fullUserData.contains(email);
+    public boolean isInFile(Path path, String value){
+        List<String> fullUserData = readFromFile(path);
+        return fullUserData.contains(value);
     }
     public List<String> readFromFile(Path path){
         try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
