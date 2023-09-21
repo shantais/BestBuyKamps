@@ -47,8 +47,12 @@ public class User {
 
     public boolean isInFile(Path path, String value){
         List<String> fullUserData = readFromFile(path);
-        return fullUserData.contains(value);
+        for(String user: fullUserData) {
+            return user.contains(value);
+        }
+        return false;
     }
+
     public List<String> readFromFile(Path path){
         try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
             List<String> fullUserData = new LinkedList<>();
