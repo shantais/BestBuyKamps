@@ -21,19 +21,16 @@ public class Order extends ShoppingCart {
     Scanner scanner = new Scanner(System.in);
 
 
-
     public Order(ShoppingCart shoppingCart, User user) {
         this.productOrder.addAll(shoppingCart.getProducts());
+    }
 
-//    public boolean userIsLoggedOrNot(){
-//
-//        }
 
     public Order(ShoppingCart shoppingCart, User user) {
             if (!user.isLogged()) {
                 throw new IllegalStateException("The User is not logged in");
             }
-            //this.productOrder.addAll(shoppingCart.getProducts());
+            this.productOrder.addAll(shoppingCart.getProducts());
 
             this.user = user;
         }
@@ -69,4 +66,3 @@ public class Order extends ShoppingCart {
             System.out.println("Selected payment method: " + selectedPaymentMethod);
         }
     }
-}
