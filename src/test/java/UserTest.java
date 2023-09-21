@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //import org.junit.jupiter.api.Disabled;
 //import org.junit.jupiter.api.Test;
 //
@@ -25,6 +26,28 @@
 ////        assertEquals(true, user.isInFile(path, "KowalskiRządzi666", "jan.kowalski@somesite.com"));
 ////    }
 //
+=======
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import user.User;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class UserTest {
+    User user = new User();
+
+    @Test
+    void isCurrentUserLogged(){
+        assertFalse(user.isLogged());
+    }
+
+
+//    TODO: try to activate private methods via reflection
+//    Tested Method but changed to private for safety
+>>>>>>> 15617e7c75d6d380ab9cd4b8c84414ceb917b492
 //    @Test
 //    @Disabled
 //    void didGenerateProperRegistrationForm(){
