@@ -1,6 +1,6 @@
-/*      dodaje dane z koszyka ✔️
-        sprawdza czy zalogowany ✔️
-        jeśli niezalogowany to prosi o dane ✔️
+/*      dodaje dane z koszyka
+        sprawdza czy zalogowany
+        jeśli niezalogowany to prosi o dane
         jeśli zalogowany to pobiera dane z konta i prosi o uzupełnienie brakujących/potwierdzenie istniejących
         wyliczenie czasu realizacji zamówienia
         wybór formy płatności i dostawy
@@ -17,11 +17,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Order extends ShoppingCart {
-    private User user;
+
     private PaymentMethod selectedPaymentMethod;
-    private GuestUser guestUser;
-    private UserLogged userLogged;
-    private List<Product> productOrder = new ArrayList<>();
+
+
     Scanner scanner = new Scanner(System.in);
 
 
@@ -70,3 +69,6 @@ public class Order extends ShoppingCart {
             System.out.println("Selected payment method: " + selectedPaymentMethod);
         }
     }
+// biore wszystkie dane z koszyka  :)
+// metoda zaakceptowania zamowienia
+// przypisanie id klasy koszyk do nr zamowienia
