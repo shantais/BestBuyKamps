@@ -1,18 +1,28 @@
 public class Product {
-    private int id;
+    private int Id;
     private String name;
     private String category;
     private double price;
     private String description;
     private String specification;
-   // zdjęcia
 
-    public int getId() {
-        return id;
+    private static int lastId = 1;
+    // zdjęcia
+
+
+    public Product(String name, String category, double price, String description, String specification) {
+        this.name = name;
+        this.category = category;
+        this.price = price;
+        this.description = description;
+        this.specification = specification;
+        this.Id = lastId++;
+
     }
 
-    public void setId(int id) {
-        this.id = id;
+
+    public int getId() {
+        return Id;
     }
 
     public String getName() {
@@ -54,6 +64,8 @@ public class Product {
     public void setSpecification(String specification) {
         this.specification = specification;
     }
+
+
 
 
 }
