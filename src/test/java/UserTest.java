@@ -1,9 +1,9 @@
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import user.User;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
