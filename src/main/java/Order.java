@@ -7,9 +7,7 @@
         status zamówienia (złożone, przyjęte, wysłane do doręczenia, niedostarczone, dostarczone)
         */
 
-import user.GuestUser;
 import user.User;
-import user.UserLogged;
 
 import java.util.ArrayList;
 import java.util.Arrays;

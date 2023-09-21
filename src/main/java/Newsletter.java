@@ -7,15 +7,15 @@ public class Newsletter {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         try {
-            System.out.print("Podaj swój adres e-mail: ");
+            System.out.print("Enter your email address: ");
             String emailAddress = reader.readLine();
 
             if (emailExist(emailAddress)) {
-                System.out.println("Adres e-mail już istnieje.");
+                System.out.println("The email address already exists.");
             } else {
                 addEmail(emailAddress);
-                System.out.println("Adres e-mail został dodany do listy subskrybentów.");
-                System.out.println("Wysyłanie najnowszych promocjach...");
+                System.out.println("The e-mail address has been added to the subscriber list.");
+                System.out.println("We are sending you the latest promotions...");
             }
         } catch (IOException e) {
             e.printStackTrace();
