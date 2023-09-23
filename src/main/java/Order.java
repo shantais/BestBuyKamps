@@ -78,6 +78,10 @@ public class Order {
 
             System.out.println("You need to pay " + shoppingCart.getTotalPrice() + " for your order");
         }
+    public void totalPriceOrderAfterDiscount(){ // pobranie wartosci koszyka po zastosowanej znizce
+
+        System.out.println("You need to pay " + shoppingCart.getTotalPriceAfterDiscount() + " for your order");
+    }
     }
 // biore wszystkie dane z koszyka  :)
 // metoda zaakceptowania zamowienia
