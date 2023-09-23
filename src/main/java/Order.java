@@ -1,9 +1,9 @@
-/*      dodaje dane z koszyka
-        sprawdza czy zalogowany
-        jeśli niezalogowany to prosi o dane
-        jeśli zalogowany to pobiera dane z konta i prosi o uzupełnienie brakujących/potwierdzenie istniejących
-        wyliczenie czasu realizacji zamówienia
-        wybór formy płatności i dostawy
+/*
+
+
+
+
+
         status zamówienia (złożone, przyjęte, wysłane do doręczenia, niedostarczone, dostarczone)
         */
 
@@ -12,27 +12,22 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Order {
+    private StatusOrder statusOrder;
     private User user;
     Delivery delivery;
     private ShoppingCart shoppingCart;
-    private StatusOrder statusOrder;
-
     private PaymentMethod selectedPaymentMethod;
-
-
     Scanner scanner = new Scanner(System.in);
 
-
     public Order(ShoppingCart shoppingCart, User user) {
-            if (!user.isLogged()) {
+            if (!user.isLoggedStatus()) {
                 throw new IllegalStateException("The User is not logged in");
             }
             this.productOrder.addAll(shoppingCart.getProducts());
-
             this.user = user;
         }
-        public boolean userIsLoggedOrNot () {
-            if (userLogged != null) {
+        public boolean userIsLoggedOrNot () {  // metoda sprawdzajaca czy uzytkownik jest zalogowany
+            if (user.isLoggedStatus) {    /// potrzebuje gettera w klasie User ktory poda mi wartosc true lub false metody loggedStatus
                 return true;
             } else {
                 System.out.println("Please give me your name and surname:");
@@ -41,13 +36,13 @@ public class Order {
             }
             return false;
         }
-        public void showOrder () {
+        public void showOrder () {   // metoda pokazujaca jak wyglada nasze obecne zamowienie
             for (Product product : productOrder) {
                 System.out.println(product.getId() + " " + product.getName() + " " + product.getPrice() + " " +
                         product.getCategory() + " " + product.getDescription() + " " + product.getSpecification());
             }
         }
-        public void choosePaymentMethod () {
+        public void choosePaymentMethod () {           // wybor platnosci za zamowienie
             System.out.println("Choose payment method:");
             List<PaymentMethod> methodList = Arrays.asList(PaymentMethod.values()); // przekształcam wartości klasy enum w listę ( klasy enum maja wbudowana metode values )
             for (PaymentMethod method : methodList) {
@@ -56,11 +51,28 @@ public class Order {
 
             int choice;  // ten fragment kodu służy do uzyskiwania od użytkownika wyboru metody płatności, a następnie do przechowywania tego wyboru.
             do {
-                System.out.print("Enter choice (1-" + methods.length + "): ");
+                System.out.print("Enter choice (1-" + methodList.size() + "): ");
                 choice = scanner.nextInt();
-            } while (choice < 1 || choice > methods.length);
-            selectedPaymentMethod = methods[choice - 1];  // zalozylem ze utworzymy klase paymentMethod abysmy mogli dokladnie wskazac do jakiej platnosci uzytkownik sie odnosi
+            } while (choice < 1 || choice > methodList.size());
+            selectedPaymentMethod = methodList.get(choice - 1);  // zalozylem ze utworzymy klase paymentMethod abysmy mogli dokladnie wskazac do jakiej platnosci uzytkownik sie odnosi
             System.out.println("Selected payment method: " + selectedPaymentMethod);
+        }
+        public void chooseDeliveryMethod(){ // tworze metode bardzo podobnie jak wybor platnosci
+            System.out.println("Choose payment method:");
+            List<Delivery> methodDelivery = Arrays.asList(Delivery.values());
+            for(Delivery delivery : methodDelivery){
+                System.out.println((methodDelivery.indexOf(delivery) + 1) + ". ");
+            }
+            int choice;
+            do {
+                System.out.println("Enter choice (1-" + methodDelivery.size() + "): ");
+                choice = scanner.nextInt();
+            } while (choice < 1 || choice > methodDelivery.size());
+            delivery = methodDelivery.get(choice - 1);
+            System.out.println("Selected delivery: " + delivery);
+        }
+        public void displayOrderStatu() {
+            System.out.println("Current order status: " + statusOrder);
         }
     }
 // biore wszystkie dane z koszyka  :)
