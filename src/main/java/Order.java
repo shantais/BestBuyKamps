@@ -7,22 +7,20 @@
         status zamówienia (złożone, przyjęte, wysłane do doręczenia, niedostarczone, dostarczone)
         */
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class Order extends ShoppingCart {
+public class Order {
+    private User user;
+    Delivery delivery;
+    private ShoppingCart shoppingCart;
+    private StatusOrder statusOrder;
 
     private PaymentMethod selectedPaymentMethod;
 
 
     Scanner scanner = new Scanner(System.in);
-
-
-    public Order(ShoppingCart shoppingCart, User user) {
-        this.productOrder.addAll(shoppingCart.getProducts());
-    }
 
 
     public Order(ShoppingCart shoppingCart, User user) {
