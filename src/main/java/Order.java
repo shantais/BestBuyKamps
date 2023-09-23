@@ -74,7 +74,7 @@ public class Order {
         public void displayOrderStatu() {
             System.out.println("Current order status: " + statusOrder);
         }
-        public void totalPriceOrder(){
+        public void totalPriceOrder(){ // pobranie wartosci koszyka :)
 
             System.out.println("You need to pay " + shoppingCart.getTotalPrice() + " for your order");
         }
