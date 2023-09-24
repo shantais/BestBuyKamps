@@ -30,6 +30,5 @@ class ProductTest {
         Assertions.assertEquals(1, product.getId());
     }
 
-    @Test
-    public void
+
 }
