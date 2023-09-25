@@ -2,9 +2,9 @@ import java.io.*;
 
 public class Newsletter {
     private static final String email = "subscribers.txt";
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    public  void startNewsletter() {
 
-    public static void main(String[] args) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         try {
             System.out.print("Enter your email address: ");
@@ -19,15 +19,18 @@ public class Newsletter {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("catch1");
         } finally {
             try {
                 reader.close();
+                System.out.println("zamknięcie readera");
             } catch (IOException e) {
+                System.out.println("catch2");
                 e.printStackTrace();
             }
         }
     }
-    public static boolean emailExist(String email) {
+    public  boolean emailExist(String email) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(Newsletter.email))) {
             String line;
 
@@ -43,7 +46,7 @@ public class Newsletter {
         return false;
     }
 
-    public static void addEmail(String email) {
+    public  void addEmail(String email) {
         try (PrintWriter printWriter = new PrintWriter(new FileWriter(Newsletter.email, true))) {
             printWriter.println(email);
         } catch (IOException e) {
