@@ -1,7 +1,7 @@
 public class Product {
-    private int Id;
+    private final  int Id;
     private String name;
-    private String category;
+    private CategoryType categoryType;
     private double price;
     private String description;
     private String specification;
@@ -10,9 +10,9 @@ public class Product {
     // zdjęcia
 
 
-    public Product(String name, String category, double price, String description, String specification) {
+    public Product(String name, CategoryType categoryType, double price, String description, String specification) {
         this.name = name;
-        this.category = category;
+        this.categoryType = categoryType;
         this.price = price;
         this.description = description;
         this.specification = specification;
@@ -33,12 +33,12 @@ public class Product {
         this.name = name;
     }
 
-    public String getCategory() {
-        return category;
+    public CategoryType getCategory() {
+        return categoryType;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCategory(CategoryType category) {
+        this.categoryType = category;
     }
 
     public double getPrice() {

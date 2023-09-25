@@ -17,7 +17,7 @@ class ProductTest {
 
     @BeforeEach
     public void setUP() {
-        product = new Product("name", "category", 99.99, "desciprion", "specification");
+        product = new Product("name", CategoryType.Elektronika, 99.99, "desciprion", "specification");
     }
     @AfterEach
     void tearDown() {

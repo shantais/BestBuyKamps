@@ -5,7 +5,7 @@ public enum CategoryType {
     Gry_PC,
     Gry_na_konsole,
     Gry_planszowe,
-    Promocje,
+    Promocje
 
 
 
