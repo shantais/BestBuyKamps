@@ -26,45 +26,45 @@ public class Order extends ShoppingCart {
 
 
     public Order(ShoppingCart shoppingCart, User user) {
-            if (!user.isLogged()) {
-                throw new IllegalStateException("The User is not logged in");
-            }
-            this.productOrder.addAll(shoppingCart.getProducts());
+        if (!user.isLogged()) {
+            throw new IllegalStateException("The User is not logged in");
+        }
+        this.productOrder.addAll(shoppingCart.getProducts());
 
-            this.user = user;
+        this.user = user;
+    }
+    public boolean userIsLoggedOrNot () {
+        if (userLogged != null) {
+            return true;
+        } else {
+            System.out.println("Please give me your name and surname:");
+            String nameAndSurname = scanner.nextLine();
+            guestUser = new GuestUser(nameAndSurname);
         }
-        public boolean userIsLoggedOrNot () {
-            if (userLogged != null) {
-                return true;
-            } else {
-                System.out.println("Please give me your name and surname:");
-                String nameAndSurname = scanner.nextLine();
-                guestUser = new GuestUser(nameAndSurname);
-            }
-            return false;
-        }
-        public void showOrder () {
-            for (Product product : productOrder) {
-                System.out.println(product.getId() + " " + product.getName() + " " + product.getPrice() + " " +
-                        product.getCategory() + " " + product.getDescription() + " " + product.getSpecification());
-            }
-        }
-        public void choosePaymentMethod () {
-            System.out.println("Choose payment method:");
-            List<PaymentMethod> methodList = Arrays.asList(PaymentMethod.values()); // przekształcam wartości klasy enum w listę ( klasy enum maja wbudowana metode values )
-            for (PaymentMethod method : methodList) {
-                System.out.println((methodList.indexOf(method) + 1) + ". " + method);
-            }
-
-            int choice;  // ten fragment kodu służy do uzyskiwania od użytkownika wyboru metody płatności, a następnie do przechowywania tego wyboru.
-            do {
-                System.out.print("Enter choice (1-" + methods.length + "): ");
-                choice = scanner.nextInt();
-            } while (choice < 1 || choice > methods.length);
-            selectedPaymentMethod = methods[choice - 1];  // zalozylem ze utworzymy klase paymentMethod abysmy mogli dokladnie wskazac do jakiej platnosci uzytkownik sie odnosi
-            System.out.println("Selected payment method: " + selectedPaymentMethod);
+        return false;
+    }
+    public void showOrder () {
+        for (Product product : productOrder) {
+            System.out.println(product.getId() + " " + product.getName() + " " + product.getPrice() + " " +
+                    product.getCategory() + " " + product.getDescription() + " " + product.getSpecification());
         }
     }
+    public void choosePaymentMethod () {
+        System.out.println("Choose payment method:");
+        List<PaymentMethod> methodList = Arrays.asList(PaymentMethod.values()); // przekształcam wartości klasy enum w listę ( klasy enum maja wbudowana metode values )
+        for (PaymentMethod method : methodList) {
+            System.out.println((methodList.indexOf(method) + 1) + ". " + method);
+        }
+
+        int choice;  // ten fragment kodu służy do uzyskiwania od użytkownika wyboru metody płatności, a następnie do przechowywania tego wyboru.
+        do {
+            System.out.print("Enter choice (1-" + methods.length + "): ");
+            choice = scanner.nextInt();
+        } while (choice < 1 || choice > methods.length);
+        selectedPaymentMethod = methods[choice - 1];  // zalozylem ze utworzymy klase paymentMethod abysmy mogli dokladnie wskazac do jakiej platnosci uzytkownik sie odnosi
+        System.out.println("Selected payment method: " + selectedPaymentMethod);
+    }
+}
 // biore wszystkie dane z koszyka  :)
 // metoda zaakceptowania zamowienia
 // przypisanie id klasy koszyk do nr zamowienia
