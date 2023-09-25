@@ -6,7 +6,12 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GeneralMethodsTest {
-    GeneralMethods generalMethodsTest = new GeneralMethods();
+    GeneralMethods generalMethods = new GeneralMethods();
+
+    @Test
+    void isLogInSuccessful(){
+        assertTrue(generalMethods.LogIn());
+    }
 
     @Test
     void isStringInUserDataFile(){
@@ -14,7 +19,7 @@ class GeneralMethodsTest {
         Path path = Paths.get("src", "main", "java", "dataFiles", "UserData.txt");
         String string = "Kowalski";
         //then
-        assertTrue(generalMethodsTest.isInFile(path, string));
+        assertTrue(generalMethods.isInFile(path, string));
     }
 
 }

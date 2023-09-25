@@ -6,6 +6,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GeneralMethods {
+    public boolean LogIn(){
+        User user = new User();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input username: ");
+        String username = scanner.nextLine();
+        user.setUsername(username);
+        System.out.println("Input password: ");
+        String password = scanner.nextLine();
+        user.setPassword(password);
+        return isInFile(user.getPath(), "username="+ user.getUsername() +"|password=" + user.getPassword());
+    }
     public List<String> readFromFile(Path path){
         try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
             List<String> fullUserData = new LinkedList<>();

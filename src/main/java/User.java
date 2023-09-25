@@ -3,6 +3,7 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class User {
+    private final Path path = Paths.get("src", "main", "java", "dataFiles", "UserSavedData.txt");
     private Boolean loggedStatus = false;
     private String username;
     private String password;
@@ -16,6 +17,10 @@ public class User {
     private String phoneNumber;
     List <Product> favouriteProducts;
     ShoppingCart savedCart;
+
+    public Path getPath() {
+        return path;
+    }
 
     public Boolean isLoggedStatus() {
         return loggedStatus;
