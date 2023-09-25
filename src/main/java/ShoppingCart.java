@@ -122,11 +122,16 @@ public class ShoppingCart {
         // System.out.println("Przypisany użytkownik: "+ user.getUsername);
         System.out.println("Produkty w koszyku: ");
 
-        for (Product product : shoppingList) {
-            System.out.println(product.getName());
-            System.out.println(product.getPrice());
-            System.out.println("--------------------");
+        if(shoppingList.size()==0){
+            System.out.println("Brak produktów w koszyku");
+        }else{
+            for (Product product : shoppingList) {
+                System.out.println(product.getName());
+                System.out.println(product.getPrice());
+                System.out.println("--------------------");
+            }
         }
+
         System.out.println("Sumaryczna cena: " + getTotalPrice());
 
         if (discount != 0) {
