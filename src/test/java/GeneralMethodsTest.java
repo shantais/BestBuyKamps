@@ -10,7 +10,10 @@ class GeneralMethodsTest {
 
     @Test
     void isLogInSuccessful(){
-        assertTrue(generalMethods.LogIn());
+        User user = new User();
+        String username = "KowalskiRządzi666";
+        String password = "AwesomePassword123";
+        assertTrue(generalMethods.isInFile(user.getPath(), "username="+ username +"|password=" + password));
     }
 
     @Test

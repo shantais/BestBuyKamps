@@ -3,7 +3,7 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class User {
-    private final Path path = Paths.get("src", "main", "java", "dataFiles", "UserSavedData.txt");
+    private final Path path = Paths.get("src", "main", "java", "dataFiles", "UserData.txt");
     private Boolean loggedStatus = false;
     private String username;
     private String password;

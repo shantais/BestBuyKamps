@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GeneralMethods {
-    public boolean LogIn(){
-        User user = new User();
+    public static String LogIn(User user){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input username: ");
         String username = scanner.nextLine();
@@ -15,9 +14,10 @@ public class GeneralMethods {
         System.out.println("Input password: ");
         String password = scanner.nextLine();
         user.setPassword(password);
-        return isInFile(user.getPath(), "username="+ user.getUsername() +"|password=" + user.getPassword());
+        return "username="+ user.getUsername() +"|password=" + user.getPassword();
     }
-    public List<String> readFromFile(Path path){
+
+    public static List<String> readFromFile(Path path){
         try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
             List<String> fullUserData = new LinkedList<>();
             String line;
@@ -30,7 +30,7 @@ public class GeneralMethods {
         }
     }
 
-    public boolean isInFile(Path path, String value){
+    public static boolean isInFile(Path path, String value){
         List<String> fullUserData = readFromFile(path);
         for(String user: fullUserData) {
             return user.contains(value);
