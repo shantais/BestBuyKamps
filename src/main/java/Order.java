@@ -7,6 +7,7 @@
         status zamówienia (złożone, przyjęte, wysłane do doręczenia, niedostarczone, dostarczone)
         */
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -17,22 +18,22 @@ public class Order {
     Delivery delivery;
     private ShoppingCart shoppingCart;
     private PaymentMethod selectedPaymentMethod;
+    private List<Product> productOrder = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
-    public Order(ShoppingCart shoppingCart, User user) {
-            if (!user.isLoggedStatus()) {
-                throw new IllegalStateException("The User is not logged in");
-            }
-            this.productOrder.addAll(shoppingCart.getProducts());
-            this.user = user;
-        }
+    public Order(){}
+
         public boolean userIsLoggedOrNot () {  // metoda sprawdzajaca czy uzytkownik jest zalogowany
             if (user.isLoggedStatus()) {    /// potrzebuje gettera w klasie User ktory poda mi wartosc true lub false metody loggedStatus
                 return true;
             } else {
-                System.out.println("Please give me your name and surname:");
-                String nameAndSurname = scanner.nextLine();
-                guestUser = new GuestUser(nameAndSurname);
+                System.out.println("Please give me your name:");
+                String name = scanner.nextLine();
+                System.out.println("Please give me your surname:");
+                String surname = scanner.nextLine();
+                User newUser = new User();
+                user.setName(name);
+                user.setSurname(surname);
             }
             return false;
         }
@@ -71,7 +72,7 @@ public class Order {
             delivery = methodDelivery.get(choice - 1);
             System.out.println("Selected delivery: " + delivery);
         }
-        public void displayOrderStatu() {
+        public void displayOrderStatus() {
             System.out.println("Current order status: " + statusOrder);
         }
         public void totalPriceOrder(){ // pobranie wartosci koszyka :)
@@ -80,7 +81,7 @@ public class Order {
         }
     public void totalPriceOrderAfterDiscount(){ // pobranie wartosci koszyka po zastosowanej znizce
 
-        System.out.println("You need to pay " + shoppingCart.getTotalPriceAfterDiscount() + " for your order");
+        System.out.println("You need to pay " + shoppingCart.getTotalPriceAfterDiscount() + " for your order after discount");
     }
     }
 // biore wszystkie dane z koszyka  :)
