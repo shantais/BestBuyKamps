@@ -29,49 +29,77 @@ addDiscount : dodanie zniżki (void)
 
  */
 
+//getProducts zwraca array list produktów
+
 import user.User;
 
 import java.util.ArrayList;
 
 public class ShoppingCart {
     private long cartID;
-    private User user;
     ArrayList<Product> shoppingList = new ArrayList<>();
-    private String cartStatus;
-    private double discount;
+    private double discount = 0.00;
     private double totalPriceAfterDiscount = 0;
     private double totalPrice = 0;
+    private User user;
 
-    public ShoppingCart(User user, Product product) {
+    private StatusOrder status;
+
+    public ShoppingCart() {
         this.cartID = generateCartID();
-        this.cartStatus = "NEW";
-        this.user=user;
-        shoppingList.add(product);
+        status = StatusOrder.CREATED;
+    }
 
+    public ShoppingCart(User user) {
+        this.cartID = generateCartID();
+        this.user = user;
+        status = StatusOrder.CREATED;
+
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public User getUser() {
         return user;
     }
 
+    public long getCartID() {
+        return cartID;
+    }
+
+    public ArrayList<Product> getProducts() {
+        return shoppingList;
+    }
 
     public double getTotalPrice() {
         return totalPrice;
+    }
+
+    public double getTotalPriceAfterDiscount() {
+        totalPriceAfterDiscount = totalPrice - (totalPrice * (discount / 100));
+        return totalPriceAfterDiscount;
     }
 
     public void addDiscount(double discount) {
         this.discount = discount;
     }
 
-
-    public void addToCart(Product product) {
-        shoppingList.add(product);
-        totalPrice+=product.getPrice();
+    public double getDiscount() {
+        return discount;
     }
 
-    public void removeFromCart(Product product){
+
+    public boolean addToCart(Product product) {
+        shoppingList.add(product);
+        totalPrice += product.getPrice();
+        return shoppingList.contains(product);
+    }
+
+    public void removeFromCart(Product product) {
         shoppingList.remove(product);
-        totalPrice-=product.getPrice();
+        totalPrice -= product.getPrice();
     }
 
 
@@ -80,8 +108,38 @@ public class ShoppingCart {
         return 1000000000L + (long) (Math.random() * (9999999999L - 1000000000L + 1));
     }
 
-    public void setCartStatus(String newCartStatus) {
-        this.cartStatus = cartStatus;
+    public void setCartStatus(StatusOrder newStatus) {
+        this.status = newStatus;
+    }
+
+    public StatusOrder getCartStatus() {
+        return status;
+    }
+
+    @Override
+    public String toString() {
+        System.out.println("Numer koszyka : " + cartID);
+        // System.out.println("Przypisany użytkownik: "+ user.getUsername);
+        System.out.println("Produkty w koszyku: ");
+
+        for (Product product : shoppingList) {
+            System.out.println(product.getName());
+            System.out.println(product.getPrice());
+            System.out.println("--------------------");
+        }
+        System.out.println("Sumaryczna cena: " + getTotalPrice());
+
+        if (discount != 0) {
+            System.out.println("Brak naliczonych zniżek");
+        } else {
+            System.out.println("Naliczona zniżka : " + discount + " %");
+            System.out.println("Sumaryczna cena ze zniżką : " + getTotalPriceAfterDiscount());
+        }
+
+        return "";
     }
 }
+
+
+
 
