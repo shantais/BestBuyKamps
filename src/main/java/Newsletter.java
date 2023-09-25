@@ -20,14 +20,6 @@ public class Newsletter {
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("catch1");
-        } finally {
-            try {
-                reader.close();
-                System.out.println("zamknięcie readera");
-            } catch (IOException e) {
-                System.out.println("catch2");
-                e.printStackTrace();
-            }
         }
     }
     public  boolean emailExist(String email) {
@@ -36,6 +28,7 @@ public class Newsletter {
 
             while ((line = bufferedReader.readLine()) != null) {
                 if (line.equals(email)) {
+                    bufferedReader.close();
                     return true;
                 }
             }
