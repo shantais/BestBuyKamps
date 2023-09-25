@@ -1,70 +1,88 @@
-/*      dodaje dane z koszyka
-        sprawdza czy zalogowany
-        jeśli niezalogowany to prosi o dane
-        jeśli zalogowany to pobiera dane z konta i prosi o uzupełnienie brakujących/potwierdzenie istniejących
-        wyliczenie czasu realizacji zamówienia
-        wybór formy płatności i dostawy
+/*
+
+
+
+
+
         status zamówienia (złożone, przyjęte, wysłane do doręczenia, niedostarczone, dostarczone)
         */
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class Order extends ShoppingCart {
-
+public class Order {
+    private StatusOrder statusOrder;
+    private User user;
+    Delivery delivery;
+    private ShoppingCart shoppingCart;
     private PaymentMethod selectedPaymentMethod;
-
-
     Scanner scanner = new Scanner(System.in);
 
-
     public Order(ShoppingCart shoppingCart, User user) {
-        this.productOrder.addAll(shoppingCart.getProducts());
-    }
-
-
-    public Order(ShoppingCart shoppingCart, User user) {
-        if (!user.isLogged()) {
-            throw new IllegalStateException("The User is not logged in");
+            if (!user.isLoggedStatus()) {
+                throw new IllegalStateException("The User is not logged in");
+            }
+            this.productOrder.addAll(shoppingCart.getProducts());
+            this.user = user;
         }
-        this.productOrder.addAll(shoppingCart.getProducts());
+        public boolean userIsLoggedOrNot () {  // metoda sprawdzajaca czy uzytkownik jest zalogowany
+            if (user.isLoggedStatus) {    /// potrzebuje gettera w klasie User ktory poda mi wartosc true lub false metody loggedStatus
+                return true;
+            } else {
+                System.out.println("Please give me your name and surname:");
+                String nameAndSurname = scanner.nextLine();
+                guestUser = new GuestUser(nameAndSurname);
+            }
+            return false;
+        }
+        public void showOrder () {   // metoda pokazujaca jak wyglada nasze obecne zamowienie
+            for (Product product : productOrder) {
+                System.out.println(product.getId() + " " + product.getName() + " " + product.getPrice() + " " +
+                        product.getCategory() + " " + product.getDescription() + " " + product.getSpecification());
+            }
+        }
+        public void choosePaymentMethod () {           // wybor platnosci za zamowienie
+            System.out.println("Choose payment method:");
+            List<PaymentMethod> methodList = Arrays.asList(PaymentMethod.values()); // przekształcam wartości klasy enum w listę ( klasy enum maja wbudowana metode values )
+            for (PaymentMethod method : methodList) {
+                System.out.println((methodList.indexOf(method) + 1) + ". " + method);
+            }
 
-        this.user = user;
-    }
-    public boolean userIsLoggedOrNot () {
-        if (userLogged != null) {
-            return true;
-        } else {
-            System.out.println("Please give me your name and surname:");
-            String nameAndSurname = scanner.nextLine();
-            guestUser = new GuestUser(nameAndSurname);
+            int choice;  // ten fragment kodu służy do uzyskiwania od użytkownika wyboru metody płatności, a następnie do przechowywania tego wyboru.
+            do {
+                System.out.print("Enter choice (1-" + methodList.size() + "): ");
+                choice = scanner.nextInt();
+            } while (choice < 1 || choice > methodList.size());
+            selectedPaymentMethod = methodList.get(choice - 1);  // zalozylem ze utworzymy klase paymentMethod abysmy mogli dokladnie wskazac do jakiej platnosci uzytkownik sie odnosi
+            System.out.println("Selected payment method: " + selectedPaymentMethod);
         }
-        return false;
-    }
-    public void showOrder () {
-        for (Product product : productOrder) {
-            System.out.println(product.getId() + " " + product.getName() + " " + product.getPrice() + " " +
-                    product.getCategory() + " " + product.getDescription() + " " + product.getSpecification());
+        public void chooseDeliveryMethod(){ // tworze metode bardzo podobnie jak wybor platnosci
+            System.out.println("Choose payment method:");
+            List<Delivery> methodDelivery = Arrays.asList(Delivery.values());
+            for(Delivery delivery : methodDelivery){
+                System.out.println((methodDelivery.indexOf(delivery) + 1) + ". ");
+            }
+            int choice;
+            do {
+                System.out.println("Enter choice (1-" + methodDelivery.size() + "): ");
+                choice = scanner.nextInt();
+            } while (choice < 1 || choice > methodDelivery.size());
+            delivery = methodDelivery.get(choice - 1);
+            System.out.println("Selected delivery: " + delivery);
         }
-    }
-    public void choosePaymentMethod () {
-        System.out.println("Choose payment method:");
-        List<PaymentMethod> methodList = Arrays.asList(PaymentMethod.values()); // przekształcam wartości klasy enum w listę ( klasy enum maja wbudowana metode values )
-        for (PaymentMethod method : methodList) {
-            System.out.println((methodList.indexOf(method) + 1) + ". " + method);
+        public void displayOrderStatu() {
+            System.out.println("Current order status: " + statusOrder);
         }
+        public void totalPriceOrder(){ // pobranie wartosci koszyka :)
 
-        int choice;  // ten fragment kodu służy do uzyskiwania od użytkownika wyboru metody płatności, a następnie do przechowywania tego wyboru.
-        do {
-            System.out.print("Enter choice (1-" + methods.length + "): ");
-            choice = scanner.nextInt();
-        } while (choice < 1 || choice > methods.length);
-        selectedPaymentMethod = methods[choice - 1];  // zalozylem ze utworzymy klase paymentMethod abysmy mogli dokladnie wskazac do jakiej platnosci uzytkownik sie odnosi
-        System.out.println("Selected payment method: " + selectedPaymentMethod);
+            System.out.println("You need to pay " + shoppingCart.getTotalPrice() + " for your order");
+        }
+    public void totalPriceOrderAfterDiscount(){ // pobranie wartosci koszyka po zastosowanej znizce
+
+        System.out.println("You need to pay " + shoppingCart.getTotalPriceAfterDiscount() + " for your order");
     }
-}
+    }
 // biore wszystkie dane z koszyka  :)
 // metoda zaakceptowania zamowienia
 // przypisanie id klasy koszyk do nr zamowienia

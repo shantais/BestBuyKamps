@@ -71,4 +71,6 @@ public class GeneralMethods {
 
         return String.join("|", registrationForm);
     }
+
+
 }
