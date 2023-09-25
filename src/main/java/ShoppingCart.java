@@ -31,7 +31,7 @@ addDiscount : dodanie zniżki (void)
 
 //getProducts zwraca array list produktów
 
-import user.User;
+
 
 import java.util.ArrayList;
 
