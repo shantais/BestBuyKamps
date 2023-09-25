@@ -27,7 +27,7 @@ public class Order {
             this.user = user;
         }
         public boolean userIsLoggedOrNot () {  // metoda sprawdzajaca czy uzytkownik jest zalogowany
-            if (user.isLoggedStatus) {    /// potrzebuje gettera w klasie User ktory poda mi wartosc true lub false metody loggedStatus
+            if (user.isLoggedStatus()) {    /// potrzebuje gettera w klasie User ktory poda mi wartosc true lub false metody loggedStatus
                 return true;
             } else {
                 System.out.println("Please give me your name and surname:");

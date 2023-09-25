@@ -1,4 +1,3 @@
-import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -18,7 +17,7 @@ public class User {
     List <Product> favouriteProducts;
     ShoppingCart savedCart;
 
-    public Boolean isLogged() {
+    public Boolean isLoggedStatus() {
         return loggedStatus;
     }
 
@@ -112,9 +111,12 @@ public class User {
     }
 
     public List<Product> getFavouriteProducts() {
+        Path path = Paths.get("src", "main", "java", "dataFiles", "UserSavedData.txt");
         return favouriteProducts;
     }
 
+
+    //TODO: *
     public void setSavedCart(ShoppingCart savedCart) {
         this.savedCart = savedCart;
     }
