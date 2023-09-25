@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import user.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,7 +12,7 @@ class ShoppingCartTest {
     public void setUp() {
         // Inicjalizacja obiektu ShoppingCart i produktów przed każdym testem
         shoppingCart = new ShoppingCart();
-        product1 = new Product("telefon", "elektronika", 2000.00, "najlepszy telefon", "ekran i reszta bajerów");
+        product1 = new Product("telefon", CategoryType.Elektronika, 2000.00, "najlepszy telefon", "ekran i reszta bajerów");
     }
 
     @Test
