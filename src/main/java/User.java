@@ -130,6 +130,20 @@ public class User {
     }
 
     public void setAllUserData(String logInData) {
-        GeneralMethods.isInFile(getPath(), logInData);
+        String userData = GeneralMethods.getFromFile(getPath(), logInData);
+        List<String> formStrings = List.of("username=", "password=", "name=", "surname=", "email=", "street=",
+                "houseNumber=", "postalCode=", "city=", "phoneNumber=");
+        for (String formValue: formStrings)
     }
+
+//    public static String getFromFile(Path path, String line){
+//        List<String> fullUserData = readFromFile(path);
+//        for(String userLine: fullUserData) {
+//            if (userLine.contains(line)){
+//                return userLine;
+//            }
+//        }
+//        System.out.println("Data have not been found.");
+//        return "";
+//    }
 }
