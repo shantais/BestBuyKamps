@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GeneralMethods {
-    public static String LogIn(User user){
-        Scanner scanner = new Scanner(System.in);
+    public static String LogIn(Scanner scanner, User user){
         System.out.println("Input username: ");
         String username = scanner.nextLine();
         user.setUsername(username);
@@ -21,7 +20,7 @@ public class GeneralMethods {
         while (true) {
             System.out.println("1. Log In | 2. Register");
             if (scanner.nextLine().equals("1")) {
-                String logInData = LogIn(user);
+                String logInData = LogIn(scanner, user);
                 if (isInFile(user.getPath(), logInData)){
                     System.out.println("Logged in successfully");
                     user.setLoggedStatus(true);
