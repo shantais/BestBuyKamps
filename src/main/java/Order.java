@@ -100,6 +100,9 @@ public class Order {
     public void setUser(User user) {
         this.user = user;
     }
+    public User getUser() {
+        return user;
+    }
 }
 // biore wszystkie dane z koszyka  :)
 // metoda zaakceptowania zamowienia
