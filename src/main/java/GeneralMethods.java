@@ -23,6 +23,7 @@ public class GeneralMethods {
             if (scanner.nextLine().equals("1")) {
                 if (isInFile(user.getPath(), LogIn(user))){
                     System.out.println("Logged in successfully");
+                    break;
                 } else {
                     System.out.println("Wrong Username or password.");
                 }
@@ -33,9 +34,10 @@ public class GeneralMethods {
                 } else {
                     addStringToFile(user.getPath(), filledForm);
                     System.out.println("Registration successful.");
+                    break;
                 }
             } else {
-                System.out.println("błąd");
+                System.out.println("Incorrect command, try again.");
             }
         }
     }
