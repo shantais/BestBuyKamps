@@ -131,19 +131,26 @@ public class User {
 
     public void setAllUserData(String logInData) {
         String userData = GeneralMethods.getFromFile(getPath(), logInData);
+        List<String> userDataList = new LinkedList<>(List.of(userData.split("\\|")));
         List<String> formStrings = List.of("username=", "password=", "name=", "surname=", "email=", "street=",
                 "houseNumber=", "postalCode=", "city=", "phoneNumber=");
-        for (String formValue: formStrings)
+        List<String> userGetterData = new LinkedList<>();
+        for (String formValue : formStrings){
+            for (String userValue : userDataList){
+                if (userValue.contains(formValue)){
+                    userDataList.add(userValue.split(formValue)[1]);
+                }
+            }
+        }
+        setName(userGetterData.get(2));
+        setSurname(userGetterData.get(3));
+        setEmail(userGetterData.get(4));
+        setStreet(userGetterData.get(5));
+        setHouseNumber(userGetterData.get(6));
+        setPostalCode(userGetterData.get(7));
+        setCity(userGetterData.get(8));
+        setPhoneNumber(userGetterData.get(9));
     }
 
-//    public static String getFromFile(Path path, String line){
-//        List<String> fullUserData = readFromFile(path);
-//        for(String userLine: fullUserData) {
-//            if (userLine.contains(line)){
-//                return userLine;
-//            }
-//        }
-//        System.out.println("Data have not been found.");
-//        return "";
-//    }
+
 }

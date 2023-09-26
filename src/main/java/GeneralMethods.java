@@ -71,14 +71,16 @@ public class GeneralMethods {
         return false;
     }
 
-//    public static String getFromFile(Path path, String line){
-//        List<String> fullUserData = readFromFile(path);
-//        for(String user: fullUserData) {
-//            if (user.contains(line)){
-//
-//            }
-//        }
-//    }
+    public static String getFromFile(Path path, String line){
+        List<String> fullUserData = readFromFile(path);
+        for(String userLine: fullUserData) {
+            if (userLine.contains(line)){
+                return userLine;
+            }
+        }
+        System.out.println("Data have not been found.");
+        return "";
+    }
 
     private static void addStringToFile(Path path, String dataReadyToAdd){
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(path.toFile()))){
