@@ -131,25 +131,27 @@ public class User {
 
     public void setAllUserData(String logInData) {
         String userData = GeneralMethods.getFromFile(getPath(), logInData);
+
         List<String> userDataList = new LinkedList<>(List.of(userData.split("\\|")));
-        List<String> formStrings = List.of("username=", "password=", "name=", "surname=", "email=", "street=",
-                "houseNumber=", "postalCode=", "city=", "phoneNumber=");
+        List<String> formStrings = new LinkedList<>(List.of("username=", "password=", "name=", "surname=", "email=", "street=",
+                "houseNumber=", "postalCode=", "city=", "phoneNumber="));
         List<String> userGetterData = new LinkedList<>();
         for (String formValue : formStrings){
             for (String userValue : userDataList){
                 if (userValue.contains(formValue)){
-                    userDataList.add(userValue.split(formValue)[1]);
+                    userGetterData.add(userValue.split(formValue)[1]);
+//                    System.out.println(userValue.split(formValue)[1]);
                 }
             }
         }
-        setName(userGetterData.get(2));
-        setSurname(userGetterData.get(3));
-        setEmail(userGetterData.get(4));
-        setStreet(userGetterData.get(5));
-        setHouseNumber(userGetterData.get(6));
-        setPostalCode(userGetterData.get(7));
-        setCity(userGetterData.get(8));
-        setPhoneNumber(userGetterData.get(9));
+        setName(userGetterData.get(3));
+        setSurname(userGetterData.get(5));
+        setEmail(userGetterData.get(6));
+        setStreet(userGetterData.get(7));
+        setHouseNumber(userGetterData.get(8));
+        setPostalCode(userGetterData.get(9));
+        setCity(userGetterData.get(10));
+        setPhoneNumber(userGetterData.get(11));
     }
 
 

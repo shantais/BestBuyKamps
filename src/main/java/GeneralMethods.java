@@ -101,8 +101,8 @@ public class GeneralMethods {
     }
 
     public static String registrationForm(Scanner scanner){
-        List<String> formStrings = List.of("username=", "password=", "name=", "surname=", "email=", "street=",
-                "houseNumber=", "postalCode=", "city=", "phoneNumber=");
+        List<String> formStrings = new LinkedList<>(List.of("$username=", "$password=", "$name=", "$surname=", "$email=", "$street=",
+                "$houseNumber=", "$postalCode=", "$city=", "$phoneNumber="));
         List<String> registrationForm = new LinkedList<>();
 
         System.out.println("Please fill in registration form:");
