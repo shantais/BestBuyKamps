@@ -14,14 +14,16 @@ import java.util.Scanner;
 
 public class Order {
     private StatusOrder statusOrder;
-    private User user;
+    private User user = new User();
     Delivery delivery;
     private ShoppingCart shoppingCart;
     private PaymentMethod selectedPaymentMethod;
     private List<Product> productOrder = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
-    public Order(){}
+    public Order(){
+        statusOrder = StatusOrder.CREATED;
+    }
 
         public boolean userIsLoggedOrNot () {  // metoda sprawdzajaca czy uzytkownik jest zalogowany
             if (user.isLoggedStatus()) {    /// potrzebuje gettera w klasie User ktory poda mi wartosc true lub false metody loggedStatus
@@ -62,7 +64,7 @@ public class Order {
             System.out.println("Choose payment method:");
             List<Delivery> methodDelivery = Arrays.asList(Delivery.values());
             for(Delivery delivery : methodDelivery){
-                System.out.println((methodDelivery.indexOf(delivery) + 1) + ". ");
+                System.out.println((methodDelivery.indexOf(delivery) + 1) + ". " + delivery.name());
             }
             int choice;
             do {
@@ -83,7 +85,22 @@ public class Order {
 
         System.out.println("You need to pay " + shoppingCart.getTotalPriceAfterDiscount() + " for your order after discount");
     }
+
+    public void placeOrder(){
+        statusOrder = StatusOrder.PENDING;
+        System.out.println("Order: " +shoppingCart.getCartID()+" has been placed. Current status : " + statusOrder);
+
     }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
+        productOrder = shoppingCart.getProducts();
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+}
 // biore wszystkie dane z koszyka  :)
 // metoda zaakceptowania zamowienia
 // przypisanie id klasy koszyk do nr zamowienia
