@@ -16,10 +16,16 @@ public class GeneralMethods {
         return "username="+ user.getUsername() +"|password=" + user.getPassword();
     }
 
-    public static void logInLoop(Scanner scanner, User user){
+    public static void logInLoop(Scanner scanner, User user) throws InterruptedException {
+        scanner = new Scanner(System.in);
+
         while (true) {
-            System.out.println("1. Log In | 2. Register");
-            if (scanner.nextLine().equals("1")) {
+            System.out.println("1. Log In | 2. Register | 3. Back to Shop" );
+            Thread.sleep(100);
+
+            String choice = scanner.nextLine();
+
+            if (choice.equals("1")) {
                 String logInData = LogIn(scanner, user);
                 if (isInFile(user.getPath(), logInData)){
                     System.out.println("Logged in successfully");
@@ -29,7 +35,7 @@ public class GeneralMethods {
                 } else {
                     System.out.println("Wrong Username or password.");
                 }
-            } else if (scanner.nextLine().equals("2")) {
+            } else if (choice.equals("2")) {
                 String filledForm = registrationForm(scanner);
                 if (isInFile(user.getPath(), filledForm)){
                     System.out.println("User already exists");

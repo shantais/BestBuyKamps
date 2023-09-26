@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FrontSite {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         User user = new User();
 
@@ -21,14 +21,35 @@ public class FrontSite {
         while(true){
             Scanner scanner = new Scanner(System.in);
             System.out.println("Witamy w sklepie BestBuy Main Kamps");
-            System.out.println("dostępne opcje dla użytkownika niezalogowanego");
-            System.out.println("----------------------------------------------------------");
-            System.out.println(" |1. Logowanie | 2. Produkty | 3. Koszyk |  4.Newsletter |");
-            System.out.println("----------------------------------------------------------");
-            text();
+            if(!user.isLoggedStatus()){
+                System.out.println("dostępne opcje dla użytkownika niezalogowanego");
+                System.out.println("----------------------------------------------------------");
+                System.out.println(" |1. Logowanie | 2. Produkty | 3. Koszyk |  4.Newsletter |");
+                System.out.println("----------------------------------------------------------");
+                text();
+            }
+            if(user.isLoggedStatus()){
+                System.out.println("Witamy " + user.getUsername());
+                System.out.println("dostępne opcje dla użytkownika zalogowanego");
+                System.out.println("----------------------------------------------------------");
+                System.out.println(" |1. Wyloguj | 2. Produkty | 3. Koszyk |  4.Newsletter |");
+                System.out.println("----------------------------------------------------------");
+                text();
+            }
+
             currentCommend = scanner.next();
             if(currentCommend.equals("1")){
-                System.out.println("Przejście do Logowania"); // TODO
+                if(!user.isLoggedStatus()){
+                    System.out.println("Przejście do Logowania"); // TODO
+                    GeneralMethods.logInLoop(scanner,user);
+                    shoppingCart.setUser(user);
+                }else{
+                    System.out.println("Wylogowano: " + user.getUsername());
+                    user= new User();
+                    shoppingCart = new ShoppingCart();
+
+                }
+
             }else if(currentCommend.equals("2")){
                 System.out.println("Przejście do Produktów");
                 for (Product product: magazine) {
@@ -73,12 +94,22 @@ public class FrontSite {
                     System.out.println("Składanie zamówienia : ");
                     Order order = new Order();
                     order.setShoppingCart(shoppingCart);
+                    order.setUser(user);
 
                     order.userIsLoggedOrNot();
                     order.showOrder();
                     order.chooseDeliveryMethod();
                     order.choosePaymentMethod();
                     order.displayOrderStatus();
+
+                    if(shoppingCart.getUser().isLoggedStatus()){
+                        System.out.println("Imie: " + user.getName());
+                        System.out.println("Nazwisko: " + user.getSurname());
+                    }else {
+                        System.out.println("Imie: " + order.getUser().getName());
+                        System.out.println("Nazwisko: " + order.getUser().getSurname());
+                    }
+
                     order.totalPriceOrder();
                     order.totalPriceOrderAfterDiscount();
                     System.out.println("1. Złóż zamówienie | 2. Anuluj zamówienie");
@@ -114,4 +145,12 @@ public static void text(){
     System.out.println("Wybierz opcję : ...");
 }
 
+    public static String validateString(String currentCommand , String regex){
+        String command="";
+        return command;
+    }
+
+
 }
+
+
