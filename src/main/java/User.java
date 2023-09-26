@@ -120,7 +120,6 @@ public class User {
         return favouriteProducts;
     }
 
-
     //TODO: *
     public void setSavedCart(ShoppingCart savedCart) {
         this.savedCart = savedCart;
@@ -128,5 +127,9 @@ public class User {
 
     public ShoppingCart getSavedCart() {
         return savedCart;
+    }
+
+    public void setAllUserData(String logInData) {
+        GeneralMethods.isInFile(getPath(), logInData);
     }
 }

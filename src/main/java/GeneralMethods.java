@@ -21,8 +21,11 @@ public class GeneralMethods {
         while (true) {
             System.out.println("1. Log In | 2. Register");
             if (scanner.nextLine().equals("1")) {
-                if (isInFile(user.getPath(), LogIn(user))){
+                String logInData = LogIn(user);
+                if (isInFile(user.getPath(), logInData)){
                     System.out.println("Logged in successfully");
+                    user.setLoggedStatus(true);
+                    user.setAllUserData(logInData);
                     break;
                 } else {
                     System.out.println("Wrong Username or password.");
@@ -62,6 +65,15 @@ public class GeneralMethods {
         }
         return false;
     }
+
+//    public static String getFromFile(Path path, String line){
+//        List<String> fullUserData = readFromFile(path);
+//        for(String user: fullUserData) {
+//            if (user.contains(line)){
+//
+//            }
+//        }
+//    }
 
     private static void addStringToFile(Path path, String dataReadyToAdd){
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(path.toFile()))){
