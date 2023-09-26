@@ -22,7 +22,9 @@ public class FrontSite {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Witamy w sklepie BestBuy Main Kamps");
             System.out.println("dostępne opcje dla użytkownika niezalogowanego");
+            System.out.println("----------------------------------------------------------");
             System.out.println(" |1. Logowanie | 2. Produkty | 3. Koszyk |  4.Newsletter |");
+            System.out.println("----------------------------------------------------------");
             text();
             currentCommend = scanner.next();
             if(currentCommend.equals("1")){
@@ -41,13 +43,14 @@ public class FrontSite {
 
                 System.out.println("Dodaj produkt do koszyka po ID(zero aby wyjść z pentli) : ...");
                 do{
-                    System.out.println("oczekuje: ");
+
                     currentCommend = scanner.nextLine();
 
                     for (Product product1: magazine) {
                         if(Integer.toString(product1.getId()).equals(currentCommend)){
                             shoppingCart.addToCart(product1);
                             System.out.println("Dodano do koszyka: " + product1.getName() );
+                            System.out.println("Dodaj produkt do koszyka po ID(zero aby wyjść z pentli) : ...");
                         }
                     }
                 }while(!currentCommend.equals("0"));
@@ -59,13 +62,37 @@ public class FrontSite {
                 System.out.println("Przejście do Koszyka");
                 shoppingCart.toString();
                 System.out.println("1. Przejdź do menu | 2. Złóż zamówienie");
-                currentCommend = scanner.nextLine();
-                if(currentCommend.equals("1")) continue;
-                if(currentCommend.equals("2") && shoppingCart.getProducts().isEmpty()) {
+                currentCommend = scanner.next();
+                if(currentCommend.equals("1")){
+                    continue;
+                } else if(currentCommend.equals("2") && shoppingCart.getProducts().size()==0) {
                     System.out.println("Nie można złożyc zamówienia bez produktów!");
                     continue;
-                }else {
+                }else{
                     //składanie zamówienia
+                    System.out.println("Składanie zamówienia : ");
+                    Order order = new Order();
+                    order.setShoppingCart(shoppingCart);
+
+                    order.userIsLoggedOrNot();
+                    order.showOrder();
+                    order.chooseDeliveryMethod();
+                    order.choosePaymentMethod();
+                    order.displayOrderStatus();
+                    order.totalPriceOrder();
+                    order.totalPriceOrderAfterDiscount();
+                    System.out.println("1. Złóż zamówienie | 2. Anuluj zamówienie");
+                    currentCommend = scanner.next();
+                    if(currentCommend.equals("1")) {
+                        order.placeOrder();
+                        shoppingCart = new ShoppingCart();
+                        continue;
+                    }
+                    if(currentCommend.equals("2")) {
+                        order = new Order();
+                        continue;
+                    }
+
                 }
 
 
