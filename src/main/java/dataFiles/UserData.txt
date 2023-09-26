@@ -1,1 +1,1 @@
-username=KowalskiRządzi666|password=AwesomePassword123|name=Jan|surname=Kowalski|email=jan.kowalski@somesite.com|street=Awesome Street|houseNumber=111\1|postalCode=11-111|city=Great City|phoneNumber=123456789
+username=Sandriel|password=haslo|name=adam|surname=nowak|email=wp@wp.pl|street=złota|houseNumber=33|postalCode=00-001|city=warszawa|phoneNumber=661016162

@@ -20,6 +20,9 @@ public class Product {
 
     }
 
+    public Product() {
+        this.Id = lastId++;
+    }
 
     public int getId() {
         return Id;

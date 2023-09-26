@@ -1,5 +1,4 @@
 k.lechniuk@gmail.com
 a.lechniuk@gmail.com
-new@example.com
-new@example.com
-new@example.com
+yolo@wp.pl
+wp@wp.pl

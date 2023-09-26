@@ -118,28 +118,31 @@ public class ShoppingCart {
 
     @Override
     public String toString() {
-        System.out.println("Numer koszyka : " + cartID);
+        System.out.println("Cart number : " + cartID);
         // System.out.println("Przypisany użytkownik: "+ user.getUsername);
-        System.out.println("Produkty w koszyku: ");
+        System.out.println("Products in Cart: ");
 
         if(shoppingList.size()==0){
-            System.out.println("Brak produktów w koszyku");
+            System.out.println("Cart is Empty");
         }else{
             for (Product product : shoppingList) {
+                System.out.println("--------------------");
                 System.out.println(product.getName());
                 System.out.println(product.getPrice());
                 System.out.println("--------------------");
             }
         }
 
-        System.out.println("Sumaryczna cena: " + getTotalPrice());
+        System.out.println("Total Price: " + getTotalPrice());
 
         if (discount != 0) {
-            System.out.println("Brak naliczonych zniżek");
+            System.out.println("No discount`s");
         } else {
-            System.out.println("Naliczona zniżka : " + discount + " %");
-            System.out.println("Sumaryczna cena ze zniżką : " + getTotalPriceAfterDiscount());
+            System.out.println("discount : " + discount + " %");
+            System.out.println("Total Price after discount  : " + getTotalPriceAfterDiscount());
         }
+        System.out.println("--------------------");
+        System.out.println("--------------------");
 
         return "";
     }
