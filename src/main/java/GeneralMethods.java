@@ -17,6 +17,29 @@ public class GeneralMethods {
         return "username="+ user.getUsername() +"|password=" + user.getPassword();
     }
 
+    public static void logInLoop(Scanner scanner, User user){
+        while (true) {
+            System.out.println("1. Log In | 2. Register");
+            if (scanner.nextLine().equals("1")) {
+                if (isInFile(user.getPath(), LogIn(user))){
+                    System.out.println("Logged in successfully");
+                } else {
+                    System.out.println("Wrong Username or password.");
+                }
+            } else if (scanner.nextLine().equals("2")) {
+                String filledForm = registrationForm(scanner);
+                if (isInFile(user.getPath(), filledForm)){
+                    System.out.println("User already exists");
+                } else {
+                    addStringToFile(user.getPath(), filledForm);
+                    System.out.println("Registration successful.");
+                }
+            } else {
+                System.out.println("błąd");
+            }
+        }
+    }
+
     public static List<String> readFromFile(Path path){
         try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
             List<String> fullUserData = new LinkedList<>();
@@ -38,7 +61,7 @@ public class GeneralMethods {
         return false;
     }
 
-    private void addStringToFile(Path path, String dataReadyToAdd){
+    private static void addStringToFile(Path path, String dataReadyToAdd){
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(path.toFile()))){
             List<String> fullUserData = readFromFile(path);
             fullUserData.add(dataReadyToAdd);
@@ -56,15 +79,12 @@ public class GeneralMethods {
         }
     }
 
-    public String registrationForm(){
-        Path path = Paths.get("src", "main", "java", "dataFiles", "UserData.txt");
-
+    public static String registrationForm(Scanner scanner){
         List<String> formStrings = List.of("username=", "password=", "name=", "surname=", "email=", "street=",
                 "houseNumber=", "postalCode=", "city=", "phoneNumber=");
         List<String> registrationForm = new LinkedList<>();
 
         System.out.println("Please fill in registration form:");
-        Scanner scanner = new Scanner(System.in);
 
         for (String formSpace : formStrings){
             boolean isEmpty = true;
@@ -82,6 +102,4 @@ public class GeneralMethods {
 
         return String.join("|", registrationForm);
     }
-
-
 }
