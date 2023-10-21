@@ -13,17 +13,29 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-<dependencies>
+    <dependencies>
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-engine</artifactId>
         <version>5.9.3</version>
         <scope>test</scope>
     </dependency>
+    </dependencies>
+  <dependencies>
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-api</artifactId>
         <version>5.10.0</version>
         <scope>test</scope>
-    </dependency></dependencies>
+    </dependency>
+  </dependencies>
+
+    <dependencies>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.26</version> <!-- Dostosuj wersję do swojej bazy danych -->
+            </dependency>
+
+</dependencies>
 </project>
